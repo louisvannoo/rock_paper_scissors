@@ -23,17 +23,19 @@ function game() {
     let round;
 
     for (let i = 0; i <5; i++) {
-        round = playRound(prompt("Choose Rock, Paper or Scissors"), getComputerChoice);
+        round = playRound(prompt("Choose Rock, Paper or Scissors"), getComputerChoice());
         playerScore += round[0];
         computerScore += round[1];
         console.log(round[2]+ ` ${playerScore} v ${computerScore}`);
     }
 
     if (playerScore > computerScore) {
-        console.log("Player wins !");
+        console.log("Player wins !"+ ` ${playerScore} v ${computerScore}`);
     } else if (playerScore < computerScore) {
-        console.log("Computer wins !");
+        console.log("Computer wins !"+ ` ${playerScore} v ${computerScore}`);
     } else {
-        console.log("It's a draw !");
+        console.log("It's a draw !"+ ` ${playerScore} v ${computerScore}`);
     }
 }
+
+game()
