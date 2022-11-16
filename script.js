@@ -1,41 +1,59 @@
+let playerScore = 0;
+let computerScore = 0;
+let message = "";
+let endMessage;
+
+const scoreDisplay = document.querySelector('div.score');
+const messageDisplay = document.querySelector('div.message');
+const endMessageDisplay = document.querySelector('div.endMessage');
+
 function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"]
-    return choices[Math.floor(Math.random() * choices.length)]
+    const choices = ["rock", "paper", "scissors"];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
 
+function checkEnd() {
+    if (playerScore == 5) {
+        endMessage = "You Won !";
+        computerScore = 0;
+        playerScore = 0;
+    } else if (computerScore ==5) {
+        endMessage = "You Lost !";
+        computerScore = 0;
+        playerScore = 0;
+    }
+}
+
 function playRound(playerSelection, computerSelection) {
+    endMessage = ""
     if (playerSelection.toLowerCase() == computerSelection) {
-        return [0,0,"It's a draw !"];
+        message = "It's a draw !";
     } else if(((playerSelection.toLowerCase() == 'rock') && (computerSelection == 'paper')) || ((playerSelection.toLowerCase() == 'paper') && (computerSelection == 'scissors')) || ((playerSelection.toLowerCase() == 'scissors') && (computerSelection == 'rock'))) {
-        return [0,1,`You lost! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`];
+        message = `You lost! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`;
+        computerScore += 1; 
     } else {
-        return [1,0,`You win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`];
+        message = `You win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`;
+        playerScore += 1;
     }
+    console.log(message)
+    scoreDisplay.textContent =`${playerScore} - ${computerScore}`
+    messageDisplay.textContent = message
+    checkEnd()
+    endMessageDisplay.textContent = endMessage
+
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let round;
 
-    for (let i = 0; i <5; i++) {
-        round = playRound("", getComputerChoice());
-        playerScore += round[0];
-        computerScore += round[1];
-        console.log(round[2]+ ` ${playerScore} v ${computerScore}`);
-    }
+const buttons = document.querySelectorAll('button');
 
-    if (playerScore > computerScore) {
-        console.log("Player wins !"+ ` ${playerScore} v ${computerScore}`);
-    } else if (playerScore < computerScore) {
-        console.log("Computer wins !"+ ` ${playerScore} v ${computerScore}`);
-    } else {
-        console.log("It's a draw !"+ ` ${playerScore} v ${computerScore}`);
-    }
-}
+buttons.forEach((button) => {
 
-game()
+  button.addEventListener('click', () => {
+    playRound(button.id, getComputerChoice());
+  });
+});
+
