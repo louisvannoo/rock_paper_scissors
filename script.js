@@ -23,7 +23,7 @@ function game() {
     let round;
 
     for (let i = 0; i <5; i++) {
-        round = playRound(prompt("Choose Rock, Paper or Scissors"), getComputerChoice());
+        round = playRound("", getComputerChoice());
         playerScore += round[0];
         computerScore += round[1];
         console.log(round[2]+ ` ${playerScore} v ${computerScore}`);
