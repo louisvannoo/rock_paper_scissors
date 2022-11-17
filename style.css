@@ -33,11 +33,15 @@ main{
     align-items: center;
 }
 
-button{
+input{
     min-width: 100px;
     min-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
     margin: 0 30px;
-
+    border-radius: 10px;
+    box-shadow: 10px 10px gray;
+    transition: min-height 0.15s ease-in-out, min-width 0.15s ease-in-out, box-shadow 0.1s ;
 }
 
 .score{
@@ -53,4 +57,25 @@ button{
 .message{
     font-size: 40px;
     color: #F9FAF8;
+}
+
+.buttonContainer{
+    height: 40%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+input:hover{
+    min-height: 300px;
+    min-width: 300px;
+    transition: min-height 0.15s ease-in-out, min-width 0.15s ease-in-out;
+}
+
+input:active{
+    min-height: 280px;
+    min-width: 280px;
+    box-shadow: 10px 10px #1F2937;
+    transition: box-shadow 0.1s;
 }

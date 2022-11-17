@@ -40,7 +40,7 @@ function playRound(playerSelection, computerSelection) {
         playerScore += 1;
     }
     console.log(message)
-    scoreDisplay.textContent =`${playerScore} - ${computerScore}`
+    scoreDisplay.textContent =`You ${playerScore} - ${computerScore} IA`
     messageDisplay.textContent = message
     checkEnd()
     endMessageDisplay.textContent = endMessage
@@ -48,12 +48,12 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-const buttons = document.querySelectorAll('button');
+const inputs = document.querySelectorAll('input');
 
-buttons.forEach((button) => {
+inputs.forEach((input) => {
 
-  button.addEventListener('click', () => {
-    playRound(button.id, getComputerChoice());
+  input.addEventListener('click', () => {
+    playRound(input.id, getComputerChoice());
   });
 });
 
